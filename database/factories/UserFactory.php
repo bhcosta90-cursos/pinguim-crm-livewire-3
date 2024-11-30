@@ -43,4 +43,12 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function withValidationCode($code = '000000'): self
+    {
+        return $this->unverified()->state(fn (array $attributes) => [
+            'validation_code' => $code,
+            'validation_at'   => now()->addHour(),
+        ]);
+    }
 }
