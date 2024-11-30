@@ -39,5 +39,5 @@ jobs:
       run: php artisan test --parallel
     - name: Pint
       run: ./vendor/bin/pint --test
-    - name: Pint
+    - name: Stan
       run: ./vendor/bin/phpstan analyse --memory-limit=2G
