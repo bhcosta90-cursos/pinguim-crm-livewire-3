@@ -12,11 +12,18 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->make([
-            'name'  => 'CRM Admin',
-            'email' => 'admin@crm.com',
-        ]);
+        \DB::transaction(function () {
+            User::factory()->create([
+                'name'  => 'CRM - Admin',
+                'email' => 'admin@crm.com',
+            ]);
 
-        User::upsert($user->toArray() + ['password' => bcrypt('password')], ['email']);
+            User::factory()->create([
+                'name'  => 'CRM - User',
+                'email' => 'user@crm.com',
+            ]);
+
+            User::factory(20)->create();
+        });
     }
 }
