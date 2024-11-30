@@ -1,4 +1,4 @@
-<x-card title="Registrar-se">
+<x-card :title="__('Register')">
     <form class="space-y-4" wire:submit="submit">
         <x-input label="Nome" wire:model="name" autofocus />
         <div class="grid grid-cols-2 gap-4">

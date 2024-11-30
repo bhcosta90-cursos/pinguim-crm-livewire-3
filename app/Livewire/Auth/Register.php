@@ -28,7 +28,7 @@ class Register extends Component
     public function render(): View
     {
         return view('livewire.auth.register')->layoutData([
-            'title' => 'Register',
+            'title' => __('Register'),
         ]);
     }
 
