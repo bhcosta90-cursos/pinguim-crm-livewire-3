@@ -34,6 +34,8 @@ class User extends Authenticatable implements Auditable
         return [
             'email_verified_at' => 'datetime',
             'password'          => 'hashed',
+            'validation_code'   => 'hashed',
+            'validation_at'     => 'datetime',
         ];
     }
 }

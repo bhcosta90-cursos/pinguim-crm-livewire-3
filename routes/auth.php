@@ -10,4 +10,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', Livewire\Auth\Register::class)->name('login');
 });
 
-Route::get('/email-validation', Livewire\Auth\Register::class)->name('email-validation');
+Route::middleware('auth')->group(function () {
+    Route::get('/email-validation', Livewire\Auth\ValidationEmail::class)->name('email-validation');
+});
