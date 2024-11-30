@@ -60,7 +60,7 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
-        "dev": "npx concurrently -c \"#c4b5fd,#fdba74\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite' --timeout 0"
+        "dev": "npx concurrently -c \"#c4b5fd,#fdba74\" \"php artisan queue:listen --tries=1\" \"npm run dev\" --names='server,queue,vite' --no-timeout"
     },
     "extra": {
         "laravel": {
