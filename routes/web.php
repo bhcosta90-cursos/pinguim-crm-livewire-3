@@ -5,6 +5,6 @@ declare(strict_types = 1);
 use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
-include_once __DIR__ . '/auth.php';
+include __DIR__ . '/auth.php';
 
 Route::get('/', Livewire\Welcome::class);
