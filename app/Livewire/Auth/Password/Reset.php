@@ -55,6 +55,8 @@ class Reset extends Component
 
     public function submit(): void
     {
+        $this->validate();
+
         $status = Password::reset(
             $this->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, $password) {

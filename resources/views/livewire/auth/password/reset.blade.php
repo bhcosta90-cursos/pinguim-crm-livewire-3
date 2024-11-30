@@ -1,6 +1,6 @@
 <x-card :title="__('Reset Password')">
     @if($message = session()->get('status'))
-        <x-alert icon="o-exclamation-triangle" class="alert-error mb-4">
+        <x-alert icon="exclamation-triangle">
             {{ $message }}
         </x-alert>
     @endif
