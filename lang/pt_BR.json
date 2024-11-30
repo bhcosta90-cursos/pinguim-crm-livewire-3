@@ -162,5 +162,8 @@
     "Your verification code is: ": "Seu código de verificação é: ",
     "Code was sent to you. Check your mailbox.": "Código enviado para você. Verifique sua caixa de entrada.",
     "We sent you a code. Please check your email.": "Enviamos um código para você. Por favor, verifique seu e-mail.",
+    "You will receive an email with the password recovery link.": "Você receberá um e-mail com o link de recuperação de senha.",
+    "Never mind, get back to login page.": "Deixa pra lá, voltar para a página de login.",
+    "Confirmation Email": "E-mail de confirmação",
     "I already have an account": "Eu já tenho uma conta"
 }
