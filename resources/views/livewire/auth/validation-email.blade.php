@@ -1,9 +1,15 @@
 <x-card :title="__('Verify Email Address')">
-    <form class="space-y-4" wire:submit="submit">
+    <form wire:submit="submit" class="space-y-4">
+        @if($sendNewCodeMessage)
+            <x-alert info>
+                {{ $sendNewCodeMessage }}
+            </x-alert>
+        @endif
         <p>
             @lang('We sent you a code. Please check your email.')
         </p>
-        <x-input label="Code" wire:model="code"/>
+
+        <x-ts-pin length="6" wire:model="code" />
 
         <div class="w-full flex items-center justify-between">
             <a href="#" wire:click="sendNewCode" class="text-muted link">
