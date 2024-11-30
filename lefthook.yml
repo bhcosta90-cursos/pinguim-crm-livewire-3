@@ -1,3 +1,8 @@
+commit-msg:
+  parallel: true
+  scripts:
+    "commit.sh":
+      runner: bash
 pre-rebase:
   parallel: true
   scripts:
