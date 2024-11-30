@@ -9,10 +9,10 @@ BBlue='\033[1;34m'
 BRed='\033[1;31m'
 # Find current user email
 USER_EMAIL=$(git config user.email)
-# Verify if the user email is set to a devsquad email
-if [[ "$USER_EMAIL" != *"devsquad.com" ]]; then
-    echo -e "${BRed}You are not using a DevSquad email as your user.email... ${NC}"
-    echo -e "${BBlue}You can use ${BRed}git config user.email \"type your devsquad email\"${BBlue} to set up the user.email.${NC}"
+# Verify if the user email is set to a gmail email
+if [[ "$USER_EMAIL" != *"gmail.com" ]]; then
+    echo -e "${BRed}You are not using a Gmail email as your user.email... ${NC}"
+    echo -e "${BBlue}You can use ${BRed}git config user.email \"type your gmail email\"${BBlue} to set up the user.email.${NC}"
     exit 1
 fi
 # Find current branch name
