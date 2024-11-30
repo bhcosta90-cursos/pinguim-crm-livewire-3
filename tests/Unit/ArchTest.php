@@ -2,7 +2,10 @@
 
 declare(strict_types = 1);
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use Illuminate\Notifications\Notification;
 use OwenIt\Auditing\Contracts\Auditable;
 
 arch()
@@ -14,8 +17,15 @@ arch()
     ->expect('App\Models')
     ->toBeClasses()
     ->toImplement([Auditable::class])
-    ->toUseTraits(['Illuminate\Database\Eloquent\SoftDeletes', OwenIt\Auditing\Auditable::class])
+    ->toUseTraits([SoftDeletes::class, OwenIt\Auditing\Auditable::class])
     ->toExtend(Model::class);
+
+arch()
+    ->expect('App\Notifications')
+    ->toBeClasses()
+    ->toImplement([ShouldQueue::class])
+    ->toUseTraits([Queueable::class])
+    ->toExtend(Notification::class);
 
 arch()
     ->expect('App\Actions')

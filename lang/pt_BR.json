@@ -159,5 +159,7 @@
     "You may delete any of your existing tokens if they are no longer needed.": "Você deve deletar os tokens sem utilização.",
     "Your email address is unverified.": "Seu endereço de e-mail não foi verificado.",
     "Photo": "Foto",
+    "Your verification code is: ": "Seu código de verificação é: ",
+    "We sent you a code. Please check your email.": "Enviamos um código para você. Por favor, verifique seu e-mail.",
     "I already have an account": "Eu já tenho uma conta"
 }
