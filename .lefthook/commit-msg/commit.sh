@@ -11,7 +11,7 @@ BRed='\033[1;31m'
 USER_EMAIL=$(git config user.email)
 # Verify if the user email is set to a gmail email
 if [[ "$USER_EMAIL" != *"gmail.com" ]]; then
-    echo -e "${BRed}You are not using a Gmail email as your user.email... ${NC}"
+    echo -e "${BRed}You are not using a gmail email as your user.email... ${NC}"
     echo -e "${BBlue}You can use ${BRed}git config user.email \"type your gmail email\"${BBlue} to set up the user.email.${NC}"
     exit 1
 fi
