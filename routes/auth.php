@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function () {
     Route::get('/register', Livewire\Auth\Register::class)->name('register');
     Route::get('/login', Livewire\Auth\Register::class)->name('login');
+    Route::as('password.')->prefix('password')->group(function () {
+        Route::get('/recovery', Livewire\Auth\Password\Recovery::class)->name('recovery');
+        Route::get('/reset', Livewire\Auth\Password\Reset::class)->name('reset');
+    });
 });
 
 Route::middleware('auth')->group(function () {

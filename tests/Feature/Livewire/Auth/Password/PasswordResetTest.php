@@ -2,8 +2,10 @@
 
 declare(strict_types = 1);
 
-test('', function () {
-    $response = $this->get('/');
+use function Pest\Laravel\get;
 
-    $response->assertStatus(200);
+test('password reset page loads and contains Livewire component', function () {
+    get('/password/reset')
+        ->assertOk()
+        ->assertSeeLivewire('auth.password.reset');
 });
