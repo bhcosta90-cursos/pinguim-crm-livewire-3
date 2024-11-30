@@ -6,8 +6,7 @@ namespace App\Livewire\Auth\Password;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Password;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\{Layout, Rule};
 use Livewire\Component;
 
 #[Layout('components.layouts.guest')]
@@ -34,5 +33,4 @@ class Recovery extends Component
         $this->message = __('You will receive an email with the password recovery link.');
         $this->reset('email');
     }
-
 }

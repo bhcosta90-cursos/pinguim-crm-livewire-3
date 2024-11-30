@@ -9,9 +9,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Livewire\Attributes\Computed;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\{Computed, Layout, Rule};
 use Livewire\Component;
 
 #[Layout('components.layouts.guest')]
@@ -52,10 +50,11 @@ class Reset extends Component
     #[Computed]
     public function obfuscatedEmail(): string
     {
-        return $this->obfuscate_email($this->email);
+        return obfuscate_email($this->email);
     }
 
-    public function submit(): void {
+    public function submit(): void
+    {
         $status = Password::reset(
             $this->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, $password) {
@@ -74,31 +73,6 @@ class Reset extends Component
         }
 
         $this->redirect(route('login'));
-    }
-
-    protected function obfuscate_email(?string $email = null): string
-    {
-        if (!$email) {
-            return '';
-        }
-
-        $split = explode('@', $email);
-
-        if(count($split) !== 2) {
-            return '';
-        }
-
-        $firstPart       = $split[0];
-        $qty             = (int)floor(strlen($firstPart) * 0.75);
-        $remaining       = strlen($firstPart) - $qty;
-        $maskedFirstPart = substr($firstPart, 0, $remaining) . str_repeat('*', $qty);
-
-        $secondPart       = $split[1];
-        $qty              = (int)floor(strlen($secondPart) * 0.75);
-        $remaining        = strlen($secondPart) - $qty;
-        $maskedSecondPart = str_repeat('*', $qty) . substr($secondPart, $remaining * -1, $remaining);
-
-        return $maskedFirstPart . '@' . $maskedSecondPart;
     }
 
     protected function tokenNotValid(): bool
