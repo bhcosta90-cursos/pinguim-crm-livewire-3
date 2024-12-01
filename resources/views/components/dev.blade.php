@@ -1,5 +1,8 @@
 <div>
     @if(!app()->isProduction())
-        <livewire:dev.login />
+        <div class="flex flex-row items-center gap-2">
+            <livewire:dev.branch-env />
+            <livewire:dev.login />
+        </div>
     @endif
 </div>
