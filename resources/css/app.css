@@ -63,3 +63,9 @@
         }
     }
 }
+
+.nav-bar-dev {
+    .absolute {
+        @apply z-50;
+    }
+}
