@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\{Attributes\On, Attributes\Url, Component, WithPagination};
 
-class Index extends Component
+class UserIndex extends Component
 {
     use WithPagination;
     use HasTaggable;
@@ -34,7 +34,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.user.index');
+        return view('livewire.admin.user.user-index');
     }
 
     public function mount(): void

@@ -10,7 +10,7 @@ trait HasSearch
 {
     public function scopeSearch(Builder $builder, array $search, array $filters): void
     {
-        $filters = collect($filters)->filter(fn ($filter) => trim($filter))->toArray();
+        $filters = collect($filters)->filter(fn ($filter) => (bool) trim($filter))->toArray();
 
         if (count($filters) && count($search)) {
             $builder->where(function (Builder $builder) use ($search, $filters) {
@@ -21,7 +21,7 @@ trait HasSearch
         }
     }
 
-    public function scopeFilterDeletedAt(Builder $builder, ?int $status): void
+    public function scopeFilterDeletedAt($builder, ?int $status): void
     {
         $builder->when($status === 2, fn () => $builder->onlyTrashed())
             ->when($status === 3, fn () => $builder->withTrashed());

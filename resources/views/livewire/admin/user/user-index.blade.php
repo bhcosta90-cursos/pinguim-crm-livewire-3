@@ -1,6 +1,6 @@
 <div>
     <x-card title="Lista de usuário" subtitle="Usuário cadastrado em nosso sistema">
-        @can('create', User::class)
+        @can('create', \App\Models\User::class)
             <x-slot:actions>
                 <livewire:admin.user.user-create />
             </x-slot:actions>

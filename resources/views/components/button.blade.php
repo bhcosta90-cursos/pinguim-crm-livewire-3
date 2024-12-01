@@ -14,5 +14,5 @@
 @endphp
 
 <x-ts-button {{ $attributes }}>
-    {{ $label ?: $slot }}
+    {{ __($label) ?: $slot }}
 </x-ts-button>
