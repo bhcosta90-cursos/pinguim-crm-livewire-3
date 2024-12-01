@@ -9,3 +9,57 @@
 .link{
     @apply underline
 }
+
+.menu ::marker {
+    content: none !important;
+}
+
+.menu {
+    details {
+        summary {
+            @apply grid grid-flow-col text-gray-400 hover:text-white hover:bg-gray-800 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
+
+            display: grid;
+            grid-auto-flow: column;
+            align-content: flex-start;
+            align-items: center;
+            &::after {
+                justify-self: end;
+                display: block;
+                margin-top: -.5rem;
+                height: .5rem;
+                width: .5rem;
+                transform: rotate(45deg);
+                transition-property: transform, margin-top;
+                transition-duration: .3s;
+                transition-timing-function: cubic-bezier(.4,0,.2,1);
+                content: "";
+                transform-origin: 75% 75%;
+                box-shadow: 2px 2px;
+                pointer-events: none;
+            }
+        }
+        &[open] {
+            > summary {
+                @apply bg-gray-800 text-white;
+
+                &::after{
+                    transform: rotate(225deg);
+                    margin-top: 0;
+                }
+            }
+        }
+
+        ul {
+            @apply mt-2 ml-3;
+        }
+
+        a {
+            @apply grid grid-flow-col text-gray-400 hover:text-white hover:bg-gray-800 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
+
+            &.active {
+                @apply bg-gray-800 text-white;
+            }
+        }
+    }
+}
