@@ -10,6 +10,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
+        <div class="flex justify-end px-6 pt-2 pb-3 bg-gray-50 border-b-2 border-gray-300">
+            <x-dev />
+        </div>
         {{ $slot }}
         @livewireScripts
     </body>
