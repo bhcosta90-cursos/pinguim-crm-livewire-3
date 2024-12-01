@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Notifications;
 
-use App\Enums\QueuePriority;
+use App\Enums\Queue\Priority;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -16,7 +16,7 @@ class ValidationCodeNotification extends Notification implements ShouldQueue
 
     public function __construct(public string $code)
     {
-        $this->onQueue(QueuePriority::High);
+        $this->onQueue(Priority::High);
     }
 
     public function via($notifiable): array
