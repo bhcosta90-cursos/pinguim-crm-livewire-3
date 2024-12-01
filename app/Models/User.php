@@ -6,10 +6,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class User extends Authenticatable implements Auditable
@@ -43,5 +45,20 @@ class User extends Authenticatable implements Auditable
     public function sendPasswordResetNotification($token): void
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function photo(): Attribute
+    {
+        return Attribute::get(function (?string $photo) {
+            if (blank($photo)) {
+                $photo = Cache::remember(
+                    $name = trim($this->name),
+                    60 * 5,
+                    fn () => 'https://ui-avatars.com/api/?name=' . $name
+                );
+            }
+
+            return $photo;
+        });
     }
 }
