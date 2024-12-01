@@ -23,7 +23,7 @@ This example requires updating your template:
 ```
 -->
 
-<body class="flex flex-col font-sans antialiased min-h-full max-w-screen" x-data>
+<body class="admin flex flex-col font-sans antialiased min-h-full max-w-screen" x-data>
     <div class="flex flex-col w-full min-h-screen bg-gray-100 dark:bg-gray-900" x-data="{ sidebarOpen: false }">
         <div class="flex w-full">
 
