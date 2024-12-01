@@ -9,5 +9,5 @@ include __DIR__ . '/auth.php';
 
 Route::get('/', Livewire\Welcome::class);
 Route::middleware(['auth', 'verify'])->group(function () {
-    Route::get('/dashboard', Livewire\Welcome::class)->name('dashboard');
+    Route::get('/dashboard', Livewire\Admin\Dashboard::class)->name('dashboard');
 });
