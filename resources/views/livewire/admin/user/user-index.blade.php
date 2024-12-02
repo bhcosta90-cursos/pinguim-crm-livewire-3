@@ -23,12 +23,14 @@
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
+                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
                 @php
                     $disableUpdate = auth()->user()->cannot('edit', $record);
                     $disableDelete = auth()->user()->cannot('delete', $record);
                     $disableRestore = auth()->user()->cannot('restore', $record);
+                    $disableImpersonate = auth()->user()->cannot('impersonate', $record);
                 @endphp
 
                 <x-table.tr>
@@ -49,6 +51,14 @@
                     </x-table.td>
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-button
+                            :disabled="$disableImpersonate"
+                            outline
+                            @click="$dispatch('user::impersonate', {user: {{ $record->id }} })"
+                            icon="finger-print"
+                        />
                     </x-table.td>
                     <x-table.td>
                         <x-button
@@ -86,4 +96,5 @@
     <livewire:admin.user.user-edit />
     <livewire:admin.user.user-delete />
     <livewire:admin.user.user-restore />
+    <livewire:admin.user.user-impersonate />
 </div>

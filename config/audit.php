@@ -2,6 +2,8 @@
 
 declare(strict_types = 1);
 
+use App\Audit\ImpersonateResolver;
+
 return [
 
     'enabled' => env('AUDITING_ENABLED', true),
@@ -44,9 +46,10 @@ return [
     |
     */
     'resolvers' => [
-        'ip_address' => OwenIt\Auditing\Resolvers\IpAddressResolver::class,
-        'user_agent' => OwenIt\Auditing\Resolvers\UserAgentResolver::class,
-        'url'        => OwenIt\Auditing\Resolvers\UrlResolver::class,
+        'ip_address'          => OwenIt\Auditing\Resolvers\IpAddressResolver::class,
+        'user_agent'          => OwenIt\Auditing\Resolvers\UserAgentResolver::class,
+        'url'                 => OwenIt\Auditing\Resolvers\UrlResolver::class,
+        'impersonate_user_id' => ImpersonateResolver::class,
     ],
 
     /*
