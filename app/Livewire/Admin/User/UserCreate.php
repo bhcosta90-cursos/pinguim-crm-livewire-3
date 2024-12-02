@@ -74,7 +74,7 @@ class UserCreate extends Component
     {
         return [
             'user.name'   => 'required|string|min:3|max:150',
-            'user.email'  => 'required|email:rfc,filter|min:3|max:150',
+            'user.email'  => 'required|email:rfc,filter|min:3|max:150|unique:users,email',
             'password'    => 'required|string|min:8|max:20',
             'permissions' => 'nullable|array',
         ];
