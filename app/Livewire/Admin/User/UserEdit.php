@@ -23,11 +23,6 @@ class UserEdit extends Component
 
     public array $permissions = [];
 
-    public function mount(): void
-    {
-        $this->authorize('edit', User::class);
-    }
-
     public function render(): View
     {
         return view('livewire.admin.user.user-edit');
@@ -44,22 +39,17 @@ class UserEdit extends Component
 
     public function submit(): void
     {
-        $this->authorize('edit', User::class);
+        $this->authorize('edit', [$this->user, $this->user]);
         $this->validate();
 
         \DB::transaction(function () {
-            if ($this->password) {
-                $this->user->password = $this->password;
-            }
-            $this->user->save();
-
             $permissions = collect($this->permissions)
                 ->map(fn (string $permission) => Can::from($permission))
                 ->toArray();
 
             $this->user->givePermissionTo($permissions);
 
-            $this->toast()->success(__('Usuário cadastrado com sucesso!'))->send();
+            $this->toast()->success(__('Usuário editado com sucesso!'))->send();
             $this->slide = false;
             $this->dispatch('user::index');
         });
@@ -77,9 +67,6 @@ class UserEdit extends Component
     protected function rules(): array
     {
         return [
-            'user.name'   => 'required|string|min:3|max:150',
-            'user.email'  => 'required|email:rfc,filter|min:3|max:150',
-            'password'    => 'nullable|string|min:8|max:20',
             'permissions' => 'nullable|array',
         ];
     }
