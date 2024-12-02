@@ -70,4 +70,11 @@ class UserFactory extends Factory
             }
         });
     }
+
+    public function deleted(): self
+    {
+        return $this->state(fn (array $attributes) => [
+            'deleted_at' => now(),
+        ]);
+    }
 }

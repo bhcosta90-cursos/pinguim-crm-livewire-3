@@ -19,4 +19,9 @@ trait HasOrder
         $this->sortColumn    = $column;
         $this->sortDirection = $direction;
     }
+
+    protected function setSortColumn(string $field): void
+    {
+        $this->sortColumn = request('sortColumn', $field);
+    }
 }

@@ -43,7 +43,19 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function mockAuthorize(array $data = [], array $returnAuthorization = []): void
 {
-    // ..
+    Illuminate\Support\Facades\Gate::shouldReceive('forUser')
+        ->withArgs(fn ($authUser) => (auth()->user())->is($authUser))
+        ->andReturnSelf();
+
+    foreach ($data as $key => $item) {
+        Illuminate\Support\Facades\Gate::shouldReceive('check')
+            ->withArgs($item)
+            ->andReturn($returnAuthorization[$key] ?? true);
+
+        Illuminate\Support\Facades\Gate::shouldReceive('authorize')
+            ->withArgs($item)
+            ->andReturn($returnAuthorization[$key] ?? true);
+    }
 }

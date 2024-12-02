@@ -40,6 +40,7 @@ class UserIndex extends Component
     public function mount(): void
     {
         $this->authorize('viewAny', User::class);
+        $this->setSortColumn('name');
     }
 
     #[Computed]
