@@ -10,10 +10,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="flex justify-end px-6 pt-2 pb-3 bg-gray-50 border-b-2 border-gray-300">
-    <x-dev/>
-</div>
-
 <!--
 This example requires updating your template:
 
@@ -30,6 +26,10 @@ This example requires updating your template:
             <x-layouts.partials.navigation />
 
             <div class="flex flex-col w-full">
+                <div class="flex justify-end px-6 pt-2 pb-3 bg-gray-50 border-b-2 border-gray-300">
+                    <x-dev/>
+                </div>
+
                 <div
                     class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
                     <x-layouts.partials.open-side-bar />
