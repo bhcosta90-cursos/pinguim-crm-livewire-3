@@ -22,9 +22,11 @@
                 <x-table.th name="name" :$sortDirection :$sortColumn>@lang('Nome e e-mail')</x-table.th>
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
+                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
                 @php
+                    $disableUpdate = auth()->user()->cannot('edit', $record);
                     $disableDelete = auth()->user()->cannot('delete', $record);
                     $disableRestore = auth()->user()->cannot('restore', $record);
                 @endphp
@@ -47,6 +49,15 @@
                     </x-table.td>
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-button
+                            neutral
+                            :disabled="$disableUpdate"
+                            outline
+                            @click="$dispatch('user::edit', {user: {{ $record->id }} })"
+                            icon="pencil"
+                        />
                     </x-table.td>
                     <x-table.td>
                         @if(blank($record->deleted_at))
@@ -72,6 +83,7 @@
         </x-table>
     </x-card>
 
+    <livewire:admin.user.user-edit />
     <livewire:admin.user.user-delete />
     <livewire:admin.user.user-restore />
 </div>
