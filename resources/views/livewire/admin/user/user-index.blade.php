@@ -26,6 +26,7 @@
             </x-slot>
             @foreach($this->records as $record)
                 @php
+                    $disableUpdate = auth()->user()->cannot('edit', $record);
                     $disableDelete = auth()->user()->cannot('delete', $record);
                     $disableRestore = auth()->user()->cannot('restore', $record);
                     $disableImpersonate = auth()->user()->cannot('impersonate', $record);
@@ -49,6 +50,15 @@
                     </x-table.td>
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-button
+                            neutral
+                            :disabled="$disableUpdate"
+                            outline
+                            @click="$dispatch('user::edit', {user: {{ $record->id }} })"
+                            icon="pencil"
+                        />
                     </x-table.td>
                     <x-table.td>
                         <x-button
@@ -82,6 +92,7 @@
         </x-table>
     </x-card>
 
+    <livewire:admin.user.user-edit />
     <livewire:admin.user.user-delete />
     <livewire:admin.user.user-restore />
     <livewire:admin.user.user-impersonate />
