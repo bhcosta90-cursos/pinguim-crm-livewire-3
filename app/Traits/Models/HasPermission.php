@@ -40,15 +40,14 @@ trait HasPermission
         foreach ($permissions as $permission) {
             $modelPermissions[] = Permission::firstOrCreate([
                 'name' => $permission->value,
-            ]);
+            ])->id;
         }
 
         $this->auditSync('permissions', $modelPermissions);
 
         Cache::forget($this->getPermissionCacheKey());
-        Cache::remember(
+        Cache::rememberForever(
             $this->getPermissionCacheKey(),
-            60 * 10,
             fn () => $this->permissions()->get()
         );
 
