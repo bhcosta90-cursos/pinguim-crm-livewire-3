@@ -23,6 +23,7 @@
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
+                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
                 @php
