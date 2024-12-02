@@ -65,9 +65,7 @@ class UserFactory extends Factory
     public function withPermission(array $permissions = []): static
     {
         return $this->afterCreating(function (User $user) use ($permissions) {
-            foreach ($permissions as $permission) {
-                $user->givePermissionTo($permission);
-            }
+            $user->givePermissionTo($permissions);
         });
     }
 
