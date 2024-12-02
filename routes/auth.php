@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use App\Actions\Auth\Logout;
 use App\Livewire;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/email-validation', Livewire\Auth\ValidationEmail::class)->name('email-validation');
+    Route::post('/logout', function (Logout $logout) {
+        $logout->handle();
+
+        return redirect()->route('login');
+    })->name('logout');
 });
