@@ -40,7 +40,7 @@ trait HasPermission
         foreach ($permissions as $permission) {
             $modelPermissions[] = Permission::firstOrCreate([
                 'name' => $permission->value,
-            ])->id;
+            ]);
         }
 
         $this->auditSync('permissions', $modelPermissions);
