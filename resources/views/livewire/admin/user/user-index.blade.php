@@ -61,16 +61,18 @@
                     <x-table.td>
                         @if(blank($record->deleted_at))
                             <x-button
+                                danger
                                 :disabled="$disableDelete"
                                 outline
-                                @click="$dispatch('user::delete', {user: {{ $record->id }} })"
+                                @click="$dispatch('model::delete', {model: {{ $record->id }} })"
                                 icon="trash"
                             />
                         @else
                             <x-button
+                                warning
                                 :disabled="$disableRestore"
                                 outline
-                                @click="$dispatch('user::restore', {user: {{ $record->id }} })"
+                                @click="$dispatch('model::restore', {model: {{ $record->id }} })"
                                 icon="arrow-uturn-left"
                             />
                         @endif
@@ -79,4 +81,7 @@
             @endforeach
         </x-table>
     </x-card>
+
+    <livewire:admin.user.user-delete />
+    <livewire:admin.user.user-restore />
 </div>
