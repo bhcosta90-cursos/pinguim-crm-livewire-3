@@ -54,19 +54,19 @@
                     </x-table.td>
                     <x-table.td>
                         <x-button
+                            :disabled="$disableImpersonate"
+                            outline
+                            @click="$dispatch('user::impersonate', {user: {{ $record->id }} })"
+                            icon="finger-print"
+                        />
+                    </x-table.td>
+                    <x-table.td>
+                        <x-button
                             neutral
                             :disabled="$disableUpdate"
                             outline
                             @click="$dispatch('user::edit', {user: {{ $record->id }} })"
                             icon="pencil"
-                        />
-                    </x-table.td>
-                    <x-table.td>
-                        <x-button
-                            :disabled="$disableImpersonate"
-                            outline
-                            @click="$dispatch('user::impersonate', {user: {{ $record->id }} })"
-                            icon="finger-print"
                         />
                     </x-table.td>
                     <x-table.td>
@@ -96,4 +96,5 @@
     <livewire:admin.user.user-edit />
     <livewire:admin.user.user-delete />
     <livewire:admin.user.user-restore />
+    <livewire:admin.user.user-impersonate />
 </div>
