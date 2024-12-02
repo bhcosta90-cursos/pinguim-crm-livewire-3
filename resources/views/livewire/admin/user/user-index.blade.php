@@ -22,13 +22,11 @@
                 <x-table.th name="name" :$sortDirection :$sortColumn>@lang('Nome e e-mail')</x-table.th>
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
-                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
                 @php
                     $disableDelete = auth()->user()->cannot('delete', $record);
                     $disableRestore = auth()->user()->cannot('restore', $record);
-                    $disableImpersonate = auth()->user()->cannot('impersonate', $record);
                 @endphp
 
                 <x-table.tr>
@@ -49,14 +47,6 @@
                     </x-table.td>
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
-                    </x-table.td>
-                    <x-table.td>
-                        <x-button
-                            :disabled="$disableImpersonate"
-                            outline
-                            @click="$dispatch('user::impersonate', {user: {{ $record->id }} })"
-                            icon="finger-print"
-                        />
                     </x-table.td>
                     <x-table.td>
                         @if(blank($record->deleted_at))
