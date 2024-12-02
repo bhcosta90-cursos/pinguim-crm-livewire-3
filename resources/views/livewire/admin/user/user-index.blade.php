@@ -96,5 +96,4 @@
     <livewire:admin.user.user-edit />
     <livewire:admin.user.user-delete />
     <livewire:admin.user.user-restore />
-    <livewire:admin.user.user-impersonate />
 </div>

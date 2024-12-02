@@ -25,8 +25,7 @@ it('should render a component', function () {
         ->assertSeeLivewire('admin.user.user-create')
         ->assertSeeLivewire('admin.user.user-edit')
         ->assertSeeLivewire('admin.user.user-delete')
-        ->assertSeeLivewire('admin.user.user-restore')
-        ->assertSeeLivewire('admin.user.user-impersonate');
+        ->assertSeeLivewire('admin.user.user-restore');
 });
 
 it('making sure that route is protected by the permission be an admin', function () {
