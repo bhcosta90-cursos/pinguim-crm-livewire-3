@@ -22,9 +22,9 @@ class UserPolicy
         return $user->hasPermissionTo(Can::BeAnAdmin);
     }
 
-    public function edit(User $user): bool
+    public function edit(User $user, User $userActual): bool
     {
-        return $user->hasPermissionTo(Can::BeAnAdmin);
+        return $user->hasPermissionTo(Can::BeAnAdmin) && $user->id !== $userActual->id;
     }
 
     public function delete(User $user, User $userDeleted): bool
