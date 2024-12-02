@@ -6,6 +6,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\ResetPasswordNotification;
+use App\Traits\Models\{HasPermission, HasSearch};
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +20,8 @@ class User extends Authenticatable implements Auditable
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
+    use HasSearch;
+    use HasPermission;
     use \OwenIt\Auditing\Auditable;
 
     protected $fillable = [

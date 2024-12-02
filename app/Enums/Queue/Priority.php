@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace App\Enums;
+namespace App\Enums\Queue;
 
-enum QueuePriority: string
+enum Priority: string
 {
     case Low         = 'low';
     case High        = 'high';

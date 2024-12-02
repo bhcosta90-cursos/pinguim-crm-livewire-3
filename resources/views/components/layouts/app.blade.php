@@ -19,7 +19,7 @@ This example requires updating your template:
 ```
 -->
 
-<body class="flex flex-col font-sans antialiased min-h-full max-w-screen" x-data>
+<body class="admin flex flex-col font-sans antialiased min-h-full max-w-screen" x-data>
     <div class="flex flex-col w-full min-h-screen bg-gray-100 dark:bg-gray-900" x-data="{ sidebarOpen: false }">
         <div class="flex w-full">
 
@@ -29,7 +29,6 @@ This example requires updating your template:
                 <div class="flex justify-end px-6 pt-2 pb-3 bg-gray-50 border-b-2 border-gray-300">
                     <x-dev/>
                 </div>
-
                 <div
                     class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
                     <x-layouts.partials.open-side-bar />

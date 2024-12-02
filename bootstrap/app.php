@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-use App\Http\Middleware\ShouldBeVerifiedMiddleware;
+use App\Http\Middleware\{HandleImpersonateMiddleware, ShouldBeVerifiedMiddleware};
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\{Exceptions, Middleware};
 
@@ -15,6 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'verify' => ShouldBeVerifiedMiddleware::class,
+        ]);
+
+        $middleware->web(append: [
+            HandleImpersonateMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

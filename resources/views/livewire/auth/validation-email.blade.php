@@ -1,5 +1,5 @@
 <x-card :title="__('Verify Email Address')">
-    <form wire:submit="submit" class="space-y-4">
+    <form wire:submit="submit" class="space-y-4 py-4">
         @if($sendNewCodeMessage)
             <x-alert info>
                 {{ $sendNewCodeMessage }}

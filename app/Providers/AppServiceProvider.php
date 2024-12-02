@@ -5,7 +5,9 @@ declare(strict_types = 1);
 namespace App\Providers;
 
 use App\Actions\Admin\Layout\VerifyMenuAction;
-use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\{Route};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,6 +22,10 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
         }
+
+        Relation::morphMap([
+            'user' => User::class,
+        ]);
     }
 
     public function boot(): void
