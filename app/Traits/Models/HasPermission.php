@@ -43,11 +43,12 @@ trait HasPermission
             ]);
         }
 
-        $this->auditAttach('permissions', $modelPermissions);
+        $this->auditSync('permissions', $modelPermissions);
 
         Cache::forget($this->getPermissionCacheKey());
-        Cache::rememberForever(
+        Cache::remember(
             $this->getPermissionCacheKey(),
+            60 * 10,
             fn () => $this->permissions()->get()
         );
 
