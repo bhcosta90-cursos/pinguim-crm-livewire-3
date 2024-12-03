@@ -30,4 +30,9 @@ class CustomerPolicy
     {
         return $user->is(auth()->user());
     }
+
+    public function edit(User $user): bool
+    {
+        return $user->is(auth()->user());
+    }
 }

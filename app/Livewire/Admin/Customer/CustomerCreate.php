@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class CustomerCreate extends Component
 {
-    public bool $modal = false;
+    public bool $slide = false;
 
     public ?Customer $customer = null;
 
@@ -19,7 +19,7 @@ class CustomerCreate extends Component
         return view('livewire.admin.customer.customer-create');
     }
 
-    public function updatedModal(): void
+    public function updatedSlide(): void
     {
         $this->customer = new Customer();
         $this->resetValidation();

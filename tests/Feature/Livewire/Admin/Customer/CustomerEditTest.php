@@ -2,17 +2,21 @@
 
 declare(strict_types = 1);
 
-use App\Livewire\Admin\Customer\CustomerCreate;
+use App\Livewire\Admin\Customer\{CustomerEdit};
 use App\Models\{Customer, User};
 
 use function Pest\Laravel\{actingAs, assertDatabaseHas};
 use function Pest\Livewire\livewire;
 
-beforeEach(fn () => actingAs($this->user = User::factory()->create()));
+beforeEach(function () {
+    actingAs($this->user = User::factory()->create());
+    $this->customer = Customer::factory()->create();
+});
 
 it('creates a customer with impersonate permission and dispatches customer index event', function () {
-    livewire(CustomerCreate::class)
+    livewire(CustomerEdit::class)
         ->set('slide', true)
+        ->call('loadCustomer', $this->customer)
         ->set([
             'customer' => [
                 'name'  => 'Testing',
@@ -24,9 +28,8 @@ it('creates a customer with impersonate permission and dispatches customer index
         ->assertOk()
         ->assertHasNoErrors();
 
-    $customer = Customer::whereEmail('test@gmail.com')->first();
     assertDatabaseHas('customers', [
-        'id'    => $customer->id,
+        'id'    => $this->customer->id,
         'name'  => 'Testing',
         'email' => 'test@gmail.com',
         'phone' => '19970707070',
@@ -34,7 +37,8 @@ it('creates a customer with impersonate permission and dispatches customer index
 });
 
 it('validation fields to create a new customer', function () {
-    $lw = livewire(CustomerCreate::class)
+    $lw = livewire(CustomerEdit::class)
+        ->call('loadCustomer', $this->customer)
         ->set('slide', true);
 
     $data = [
