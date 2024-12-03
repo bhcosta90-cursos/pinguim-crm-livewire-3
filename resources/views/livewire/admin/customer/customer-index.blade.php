@@ -20,8 +20,13 @@
                 <x-table.th class="w-0" name="id" :$sortDirection :$sortColumn></x-table.th>
                 <x-table.th name="name" :$sortDirection :$sortColumn>@lang('Nome e e-mail')</x-table.th>
                 <x-table.th class="w-0"></x-table.th>
+                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
+                @php
+                    $disableDelete = auth()->user()->cannot('delete', $record);
+                    $disableRestore = auth()->user()->cannot('restore', $record);
+                @endphp
                 <x-table.tr>
                     <x-table.td :text="$record->id" />
                     <x-table.td>
@@ -31,8 +36,30 @@
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
                     </x-table.td>
+                    <x-table.td>
+                        @if(blank($record->deleted_at))
+                            <x-button
+                                    danger
+                                    :disabled="$disableDelete"
+                                    outline
+                                    @click="$dispatch('model::delete', {model: {{ $record->id }} })"
+                                    icon="trash"
+                            />
+                        @else
+                            <x-button
+                                    warning
+                                    :disabled="$disableRestore"
+                                    outline
+                                    @click="$dispatch('model::restore', {model: {{ $record->id }} })"
+                                    icon="arrow-uturn-left"
+                            />
+                        @endif
+                    </x-table.td>
                 </x-table.tr>
             @endforeach
         </x-table>
     </x-card>
+
+    <livewire:admin.customer.customer-delete />
+    <livewire:admin.customer.customer-restore />
 </div>

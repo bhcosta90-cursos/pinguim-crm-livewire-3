@@ -20,4 +20,14 @@ class CustomerPolicy
     {
         return $user->is(auth()->user());
     }
+
+    public function delete(User $user): bool
+    {
+        return $user->is(auth()->user());
+    }
+
+    public function restore(User $user): bool
+    {
+        return $user->is(auth()->user());
+    }
 }
