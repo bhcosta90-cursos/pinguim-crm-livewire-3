@@ -1,4 +1,7 @@
 {
+    "New customer": "Novo cliente",
+    "Phone": "Telefone",
+    "Customers": "Clientes",
     "(and :count more error)": "(e mais :count erro)",
     "(and :count more errors)": "(e mais :count erros)",
     "A fresh verification link has been sent to your email address.": "Um novo link de verificação foi enviado para seu e-mail",
@@ -167,5 +170,8 @@
     "Confirmation Email": "E-mail de confirmação",
     "New user": "Novo usuário",
     "I want to create an account": "Eu quero criar uma conta",
-    "I already have an account": "Eu já tenho uma conta"
+    "I already have an account": "Eu já tenho uma conta",
+    "Users": "Usuários",
+    "Sign out": "Sair",
+    "Your profile": "Seu perfil"
 }

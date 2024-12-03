@@ -2,18 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace App\Livewire\Admin\User;
+namespace App\Livewire\Admin\Customer;
 
 use App\Enums\Permission\Can;
-use App\Models\User;
+use App\Models\Customer;
 use App\Traits\Livewire\{HasOrder, HasTaggable};
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\{Attributes\On, Attributes\Url, Component, WithPagination};
 
-class UserIndex extends Component
+class CustomerIndex extends Component
 {
     use WithPagination;
     use HasTaggable;
@@ -32,18 +31,13 @@ class UserIndex extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.user.user-index')->layoutData(['title' => "Users"]);
+        return view('livewire.admin.customer.customer-index')->layoutData(['title' => __('Customers')]);
     }
 
     public function mount(): void
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Customer::class);
         $this->setSortColumn('name');
-    }
-
-    public function updatedPermissions(): void
-    {
-        $this->resetPage();
     }
 
     public function updatedStatus(): void
@@ -52,21 +46,11 @@ class UserIndex extends Component
     }
 
     #[Computed]
-    #[On('user::index')]
+    #[On('customer::index')]
     public function records(): Paginator
     {
-        return User::query()
-            ->select(['id', 'name', 'email', 'deleted_at'])
-            ->with('permissions:id,name')
-            ->when(
-                count($this->permissions ?: []),
-                fn (Builder $query) => $query->whereHas(
-                    'permissions',
-                    fn ($query) => $query
-                        ->select('permissions.id')
-                        ->whereIn('name', $this->permissions)
-                )
-            )
+        return Customer::query()
+            ->select(['id', 'name', 'email', 'phone', 'deleted_at'])
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->search($this->search, $this->dataFilter)
             ->filterDeletedAt($this->status)
