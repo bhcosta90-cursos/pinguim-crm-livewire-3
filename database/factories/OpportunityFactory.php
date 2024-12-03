@@ -22,4 +22,11 @@ class OpportunityFactory extends Factory
             'updated_at' => Carbon::now(),
         ];
     }
+
+    public function deleted(): self
+    {
+        return $this->state(fn (array $attributes) => [
+            'deleted_at' => now(),
+        ]);
+    }
 }
