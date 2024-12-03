@@ -25,7 +25,7 @@ trait HasTaggable
         $this->stringFilter = null;
         $this->dispatch('focusFilterInput');
 
-        if (method_exists($this, 'resetPage')) {
+        if (method_exists($this, 'resetPage')) { // @phpstan-ignore-line
             $this->resetPage();
         }
     }
@@ -34,7 +34,7 @@ trait HasTaggable
     {
         $this->reset('dataFilter');
 
-        if (method_exists($this, 'resetPage')) {
+        if (method_exists($this, 'resetPage')) { // @phpstan-ignore-line
             $this->resetPage(1);
         }
     }
