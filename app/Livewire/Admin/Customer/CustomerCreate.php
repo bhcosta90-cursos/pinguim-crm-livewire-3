@@ -21,6 +21,7 @@ class CustomerCreate extends Component
 
     public function updatedSlide(): void
     {
+        $this->form->reset('name', 'email', 'phone');
         $this->form->resetErrorBag();
     }
 
