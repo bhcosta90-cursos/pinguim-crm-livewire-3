@@ -13,13 +13,9 @@ beforeEach(fn () => actingAs($this->user = User::factory()->create()));
 it('creates a customer with impersonate permission and dispatches customer index event', function () {
     livewire(CustomerCreate::class)
         ->set('slide', true)
-        ->set([
-            'customer' => [
-                'name'  => 'Testing',
-                'email' => 'test@gmail.com',
-                'phone' => '19970707070',
-            ],
-        ])
+        ->set('form.name', 'Testing')
+        ->set('form.email', 'test@gmail.com')
+        ->set('form.phone', '19970707070')
         ->call('submit')
         ->assertOk()
         ->assertHasNoErrors();
@@ -38,13 +34,13 @@ it('validation fields to create a new customer', function () {
         ->set('slide', true);
 
     $data = [
-        'name::required'  => (object)['field' => 'customer.name', 'value' => '', 'rule' => 'required'],
-        'name::min:3'     => (object)['field' => 'customer.name', 'value' => 'a', 'rule' => 'min'],
-        'name::max:255'   => (object)['field' => 'customer.name', 'value' => str_repeat('*', 256), 'rule' => 'max'],
-        'email::required' => (object)['field' => 'customer.phone', 'value' => '', 'rule' => 'required_without'],
-        'email::max:255'  => (object)['field' => 'customer.email', 'value' => str_repeat('*' . '@doe.com', 256), 'rule' => 'max'],
-        'email::unique'   => (object)['field' => 'customer.email', 'value' => 'joe@doe.com', 'rule' => 'unique'],
-        'phone::required' => (object)['field' => 'customer.email', 'value' => '', 'rule' => 'required_without'],
+        'name::required'  => (object)['field' => 'form.name', 'value' => '', 'rule' => 'required'],
+        'name::min:3'     => (object)['field' => 'form.name', 'value' => 'a', 'rule' => 'min'],
+        'name::max:255'   => (object)['field' => 'form.name', 'value' => str_repeat('*', 256), 'rule' => 'max'],
+        'email::required' => (object)['field' => 'form.phone', 'value' => '', 'rule' => 'required_without'],
+        'email::max:255'  => (object)['field' => 'form.email', 'value' => str_repeat('*' . '@doe.com', 256), 'rule' => 'max'],
+        'email::unique'   => (object)['field' => 'form.email', 'value' => 'joe@doe.com', 'rule' => 'unique'],
+        'phone::required' => (object)['field' => 'form.email', 'value' => '', 'rule' => 'required_without'],
     ];
 
     foreach ($data as $f) {
