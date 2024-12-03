@@ -3,9 +3,9 @@
 
     <x-slide title="New customer" form>
         <div class="space-y-3">
-            <x-input wire:model="customer.name" label="Name" />
-            <x-input wire:model="customer.email" label="Email" />
-            <x-input wire:model="customer.phone" label="Phone" />
+            <x-input wire:model="form.name" label="Name" />
+            <x-input wire:model="form.email" label="Email" />
+            <x-input wire:model="form.phone" label="Phone" />
         </div>
     </x-slide>
 </div>
