@@ -20,7 +20,7 @@ beforeEach(function () {
 it('should render a component', function () {
     get('/admin/customer')
         ->assertSeeLivewire('admin.customer.customer-index')
-//        ->assertSeeLivewire('admin.customer.customer-create')
+        ->assertSeeLivewire('admin.customer.customer-create')
 //        ->assertSeeLivewire('admin.customer.customer-edit')
 //        ->assertSeeLivewire('admin.customer.customer-delete')
 //        ->assertSeeLivewire('admin.customer.customer-restore')
