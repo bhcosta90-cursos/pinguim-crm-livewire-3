@@ -22,8 +22,8 @@ it('should render a component', function () {
         ->assertSeeLivewire('admin.customer.customer-index')
         ->assertSeeLivewire('admin.customer.customer-create')
 //        ->assertSeeLivewire('admin.customer.customer-edit')
-//        ->assertSeeLivewire('admin.customer.customer-delete')
-//        ->assertSeeLivewire('admin.customer.customer-restore')
+        ->assertSeeLivewire('admin.customer.customer-delete')
+        ->assertSeeLivewire('admin.customer.customer-restore')
         ->assertOk();
 });
 
