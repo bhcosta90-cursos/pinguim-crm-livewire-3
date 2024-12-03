@@ -21,9 +21,11 @@
                 <x-table.th name="name" :$sortDirection :$sortColumn>@lang('Nome e e-mail')</x-table.th>
                 <x-table.th class="w-0"></x-table.th>
                 <x-table.th class="w-0"></x-table.th>
+                <x-table.th class="w-0"></x-table.th>
             </x-slot>
             @foreach($this->records as $record)
                 @php
+                    $disableUpdate = auth()->user()->cannot('edit', $record);
                     $disableDelete = auth()->user()->cannot('delete', $record);
                     $disableRestore = auth()->user()->cannot('restore', $record);
                 @endphp
@@ -32,10 +34,21 @@
                     <x-table.td>
                         <div>{{ $record->name }}</div>
                         <div><a class="underline" href="mailto:{{ $record->email }}">{{ $record->email }}</a></div>
+                        <div>{{ $record->phone }}</div>
                     </x-table.td>
                     <x-table.td class="w-0 text-center">
                         <x-disabled :is="$record->deleted_at" />
                     </x-table.td>
+                    <x-table.td>
+                        <x-button
+                                neutral
+                                :disabled="$disableUpdate"
+                                outline
+                                @click="$dispatch('customer::edit', {customer: {{ $record->id }} })"
+                                icon="pencil"
+                        />
+                    </x-table.td>
+
                     <x-table.td>
                         @if(blank($record->deleted_at))
                             <x-button
@@ -60,6 +73,7 @@
         </x-table>
     </x-card>
 
+    <livewire:admin.customer.customer-edit />
     <livewire:admin.customer.customer-delete />
     <livewire:admin.customer.customer-restore />
 </div>

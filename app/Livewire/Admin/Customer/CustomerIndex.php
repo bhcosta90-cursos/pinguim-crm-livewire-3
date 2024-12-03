@@ -50,7 +50,7 @@ class CustomerIndex extends Component
     public function records(): Paginator
     {
         return Customer::query()
-            ->select(['id', 'name', 'email', 'deleted_at'])
+            ->select(['id', 'name', 'email', 'phone', 'deleted_at'])
             ->orderBy($this->sortColumn, $this->sortDirection)
             ->search($this->search, $this->dataFilter)
             ->filterDeletedAt($this->status)
