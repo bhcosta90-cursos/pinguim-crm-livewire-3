@@ -20,4 +20,9 @@ return [
         'route'      => 'admin.customer.index',
         'permission' => ['viewAny', Models\Customer::class],
     ],
+    [
+        'title'      => 'Opportunity',
+        'route'      => 'admin.opportunity.index',
+        'permission' => ['viewAny', Models\Opportunity::class],
+    ],
 ];
