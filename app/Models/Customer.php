@@ -22,5 +22,7 @@ class Customer extends Authenticatable implements Auditable
 
     protected $fillable = [
         'name',
+        'email',
+        'phone',
     ];
 }

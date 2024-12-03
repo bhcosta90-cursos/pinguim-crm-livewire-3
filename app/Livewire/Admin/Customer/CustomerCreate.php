@@ -12,7 +12,7 @@ class CustomerCreate extends Component
 {
     public bool $slide = false;
 
-    public ?Customer $customer = null;
+    public CustomerForm $form;
 
     public function render(): View
     {
@@ -21,29 +21,16 @@ class CustomerCreate extends Component
 
     public function updatedSlide(): void
     {
-        $this->customer = new Customer();
-        $this->resetValidation();
+        $this->form->resetErrorBag();
     }
 
     public function submit(): Customer
     {
-        $this->authorize('create', Customer::class);
-        $this->validate();
+        return \DB::transaction(function () {
+            $customer = $this->form->create();
+            $this->redirectRoute('admin.customer.show', ['customer' => $customer]);
 
-        \DB::transaction(function () {
-            $this->customer->save();
-            $this->redirectRoute('admin.customer.show', ['customer' => $this->customer]);
+            return $customer;
         });
-
-        return $this->customer;
-    }
-
-    protected function rules(): array
-    {
-        return [
-            'customer.name'  => 'required|string|min:3|max:200',
-            'customer.email' => 'nullable|required_without:user.phone|email|min:3|max:200|unique:customers,email',
-            'customer.phone' => 'nullable|required_without:email|string|unique:customers,phone',
-        ];
     }
 }

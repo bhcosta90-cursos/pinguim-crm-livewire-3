@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Livewire\Admin\Customer;
 
 use App\Models\Customer;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
 
@@ -29,18 +30,20 @@ class CustomerForm extends Form
         $this->phone = $customer->phone;
     }
 
-    public function create(): void
+    public function create(): Customer
     {
+        $this->authorize('create', Customer::class);
         $this->validate();
 
-        Customer::create([
-            'type'  => 'customer',
+        $customer = Customer::create([
             'name'  => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
         ]);
 
         $this->reset();
+
+        return $customer;
     }
 
     public function update(): void
