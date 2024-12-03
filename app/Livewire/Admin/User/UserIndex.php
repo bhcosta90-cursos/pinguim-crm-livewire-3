@@ -32,7 +32,7 @@ class UserIndex extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.user.user-index');
+        return view('livewire.admin.user.user-index')->layoutData(['title' => "Users"]);
     }
 
     public function mount(): void
