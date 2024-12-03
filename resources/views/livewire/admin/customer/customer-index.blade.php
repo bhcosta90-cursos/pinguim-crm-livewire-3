@@ -1,5 +1,10 @@
 <div>
     <x-card title="Lista de clientes" subtitle="Cliente cadastrado em nosso sistema">
+        @can('create', \App\Models\Customer::class)
+            <x-slot:actions>
+                <livewire:admin.customer.customer-create />
+            </x-slot:actions>
+        @endif
         <x-table :records="$this->records">
             <x-slot name="filter">
                 <div class="space-y-2">
