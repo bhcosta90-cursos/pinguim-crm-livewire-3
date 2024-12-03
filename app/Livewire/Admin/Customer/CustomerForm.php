@@ -45,12 +45,6 @@ class CustomerForm extends Form
     {
         $this->validate();
 
-        dump([
-            $this->name,
-            $this->email,
-            $this->phone,
-        ]);
-
         $this->customer->name  = $this->name;
         $this->customer->email = $this->email;
         $this->customer->phone = $this->phone;
