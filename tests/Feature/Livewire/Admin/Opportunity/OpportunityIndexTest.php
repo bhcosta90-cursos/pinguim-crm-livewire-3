@@ -50,8 +50,8 @@ it('lets create a livewire component to list all opportunities in the page', fun
 it('should be able to filter by name and email', function () {
     Opportunity::factory(5)
         ->sequence(
-            ['name' => 'fulano and test 01 filter', 'email' => 'fulano01@testing.com'],
-            ['name' => 'fulano and test 02 filter', 'email' => 'fulano02@testing.com'],
+            ['title' => 'fulano and test 01 filter'],
+            ['title' => 'fulano and test 02 filter'],
             [],
             [],
             [],
@@ -70,21 +70,6 @@ it('should be able to filter by name and email', function () {
         ->assertSet('records', function ($data) {
             expect($data)
                 ->toHaveCount(2);
-
-            return true;
-        })
-        ->call('addFilter', 'fulano02@testing.com')
-        ->assertSet('records', function ($data) {
-            expect($data)
-                ->toHaveCount(2);
-
-            return true;
-        })
-        ->call('clearFilter')
-        ->call('addFilter', 'fulano02@testing.com')
-        ->assertSet('records', function ($data) {
-            expect($data)
-                ->toHaveCount(1);
 
             return true;
         });
@@ -125,22 +110,22 @@ it('should be able to filter by status', function () {
 });
 
 it('should be able to sort by name', function () {
-    Opportunity::factory()->create(['name' => 'First Opportunity']);
-    Opportunity::factory()->create(['name' => 'Last Opportunity']);
+    Opportunity::factory()->create(['title' => 'First Opportunity']);
+    Opportunity::factory()->create(['title' => 'Last Opportunity']);
 
     livewire(OpportunityIndex::class)
         ->assertSet('records', function ($data) {
             expect($data)
-                ->first()->name->toBe('First Opportunity')
-                ->and($data)->last()->name->toBe('Last Opportunity');
+                ->first()->title->toBe('First Opportunity')
+                ->and($data)->last()->title->toBe('Last Opportunity');
 
             return true;
         })
         ->set('sortDirection', 'desc')
         ->assertSet('records', function ($data) {
             expect($data)
-                ->first()->name->toBe('Last Opportunity')
-                ->and($data)->last()->name->toBe('First Opportunity');
+                ->first()->title->toBe('Last Opportunity')
+                ->and($data)->last()->title->toBe('First Opportunity');
 
             return true;
         });
