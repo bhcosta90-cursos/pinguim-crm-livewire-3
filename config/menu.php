@@ -15,5 +15,9 @@ return [
             ],
         ],
     ],
-
+    [
+        'title'      => 'Customer',
+        'route'      => 'admin.customer.index',
+        'permission' => ['viewAny', Models\Customer::class],
+    ],
 ];

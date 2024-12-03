@@ -16,6 +16,10 @@
     }
 
     .menu {
+        ul > li{
+            @apply mb-0.5;
+        }
+
         details {
             summary {
                 @apply grid grid-flow-col text-gray-400 hover:text-white hover:bg-gray-800 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
@@ -52,15 +56,15 @@
             }
 
             ul {
-                @apply mt-2 ml-3;
+                @apply ml-3 mt-0.5;
             }
+        }
 
-            a {
-                @apply grid grid-flow-col text-gray-400 hover:text-white hover:bg-gray-800 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
+        a {
+            @apply grid grid-flow-col text-gray-400 hover:text-white hover:bg-gray-800 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold;
 
-                &.active {
-                    @apply bg-gray-800 text-white;
-                }
+            &.active {
+                @apply bg-gray-800 text-white;
             }
         }
     }

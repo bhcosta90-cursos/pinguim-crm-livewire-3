@@ -30,7 +30,7 @@ class UserIndex extends Component
     #[Url]
     public ?int $status = null;
 
-    public ?User $user = null;
+    public ?User $user = null; // TODO: remove this line
 
     public function render(): View
     {

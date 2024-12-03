@@ -1,15 +1,11 @@
 <div>
     @if(count($this->dataFilter))
-        <div class="space-x-3">
+        <div class="gap-3 flex">
             @foreach($this->dataFilter as $key => $filter)
-                <x-badge wire:click="removeFilter({{$key}})" class="cursor-pointer">
-                    {!! $filter !!} <x-ts-icon name="x-circle" class="!size-5" />
-                </x-badge>
+                <x-badge :text="$filter" wire:click="removeFilter({{$key}})" class="cursor-pointer" icon="x-circle" md outline position="right" />
             @endforeach
 
-            <x-badge wire:click="clearFilter" class="cursor-pointer">
-                @lang('Limpar filtros')
-            </x-badge>
+            <x-badge :text="__('Limpar filtros')" wire:click="clearFilter" class="cursor-pointer" md outline />
         </div>
     @endif
 </div>

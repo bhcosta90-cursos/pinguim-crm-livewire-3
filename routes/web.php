@@ -13,7 +13,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware('verify')->group(function () {
         Route::get('/dashboard', Livewire\Admin\Dashboard::class)->name('dashboard');
         Route::as('admin.')->prefix('admin')->group(function () {
-            Route::get('/user', Livewire\Admin\User\UserIndex::class)->name('user.index');
+            Route::get('/user', Livewire\Admin\User\UserIndex::class)->name('user.index'); // TODO: Add policy to user
+            Route::get('/customer', Livewire\Admin\Customer\CustomerIndex::class)
+                ->middleware('can:viewAny,App\Models\Customer')
+                ->name('customer.index');
         });
     });
 });
