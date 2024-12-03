@@ -10,6 +10,8 @@ use Livewire\Form;
 
 class CustomerForm extends Form
 {
+    use AuthorizesRequests;
+
     public ?Customer $customer = null;
 
     public string $name = '';
@@ -44,6 +46,7 @@ class CustomerForm extends Form
     public function update(): void
     {
         $this->validate();
+        $this->authorize('create', $this->customer);
 
         $this->customer->name  = $this->name;
         $this->customer->email = $this->email;
