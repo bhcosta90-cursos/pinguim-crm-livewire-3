@@ -2,8 +2,13 @@ name: Laravel
 
 on:
   pull_request:
-    branches: [ "develop", "main" ]
-
+    branches:
+      - develop
+      - main
+      - 'feature*'
+      - 'epic*'
+      - 'hotfix*'
+      - 'bugfix*'
 jobs:
   laravel-tests:
 
