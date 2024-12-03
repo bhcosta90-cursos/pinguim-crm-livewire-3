@@ -16,6 +16,12 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/user', Livewire\Admin\User\UserIndex::class)
                 ->name('user.index')
                 ->can('viewAny,App\Models\User');
+            Route::get('/customer', Livewire\Admin\Customer\CustomerIndex::class)
+                ->middleware('can:viewAny,App\Models\Customer')
+                ->name('customer.index');
+            Route::get('/customer/{customer}', fn () => abort(400))
+                ->middleware('can:view,App\Models\Customer')
+                ->name('customer.show');
         });
     });
 });

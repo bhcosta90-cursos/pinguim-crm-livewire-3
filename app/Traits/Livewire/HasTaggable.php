@@ -24,11 +24,19 @@ trait HasTaggable
         $this->dataFilter   = array_unique(array_merge($this->dataFilter, [$valueFilter]));
         $this->stringFilter = null;
         $this->dispatch('focusFilterInput');
+
+        if (method_exists($this, 'resetPage')) { // @phpstan-ignore-line
+            $this->resetPage();
+        }
     }
 
     public function clearFilter(): void
     {
         $this->reset('dataFilter');
+
+        if (method_exists($this, 'resetPage')) { // @phpstan-ignore-line
+            $this->resetPage(1);
+        }
     }
 
     public function removeFilter(int $key): void

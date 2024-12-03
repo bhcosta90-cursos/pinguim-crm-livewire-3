@@ -1,16 +1,14 @@
 name: Laravel
 
 on:
-  push:
-    branches:
-      - 'feature/**'
-      - 'epic/**'
-      - 'hotfix/**'
-      - 'bugfix/**'
   pull_request:
     branches:
       - develop
       - main
+      - 'feature/**'
+      - 'epic/**'
+      - 'hotfix/**'
+      - 'bugfix/**'
 jobs:
   laravel-tests:
 
