@@ -41,6 +41,16 @@ class UserIndex extends Component
         $this->setSortColumn('name');
     }
 
+    public function updatedPermissions(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedStatus(): void
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
     #[On('user::index')]
     public function records(): Paginator

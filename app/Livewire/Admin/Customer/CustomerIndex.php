@@ -40,6 +40,11 @@ class CustomerIndex extends Component
         $this->setSortColumn('name');
     }
 
+    public function updatedStatus(): void
+    {
+        $this->resetPage();
+    }
+
     #[Computed]
     #[On('customer::index')]
     public function records(): Paginator
