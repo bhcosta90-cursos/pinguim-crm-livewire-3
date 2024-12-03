@@ -31,7 +31,7 @@ class CustomerIndex extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.customer.customer-index');
+        return view('livewire.admin.customer.customer-index')->layoutData(['title' => __('Customers')]);
     }
 
     public function mount(): void
